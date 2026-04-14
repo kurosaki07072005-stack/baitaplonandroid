@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_category_management"
+            android:title="Thể Loại"
+            android:icon="@drawable/ic_book"/>
+        <item
+            android:id="@+id/nav_manga_management"
+            android:title="Quản Lý Truyện Tranh"
+            android:icon="@drawable/admin"/>
+        <item
+            android:id="@+id/nav_author_management"
+            android:title="Quản Lý Tác Giả"
+            android:icon="@drawable/admin"/>
+    </group>
+
+    <item android:title="@string/nav_account">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:title="@string/nav_profile"
+                android:icon="@drawable/ic_account_circle"/>
+
+            <item
+                android:id="@+id/nav_change_password"
+                android:title="@string/nav_change_password"
+                android:icon="@drawable/ic_lock"/>
+
+            <item
+                android:id="@+id/nav_logout"
+                android:title="@string/nav_logout"
+                android:icon="@drawable/ic_logout"/>
+        </menu>
+    </item>
+</menu>

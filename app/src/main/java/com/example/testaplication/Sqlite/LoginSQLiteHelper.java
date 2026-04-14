@@ -15,7 +15,6 @@ public class LoginSQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "app_manga.db";
     private static final int DATABASE_VERSION = 2;
 
-    // Câu lệnh khởi tạo Database.
     private static final String DATABASE_CREATE = "create table "
             + TABLE_ACCOUNT + "( "
             + COLUMN_ID + " integer primary key autoincrement, "

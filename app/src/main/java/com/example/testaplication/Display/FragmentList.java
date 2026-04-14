@@ -23,7 +23,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.testaplication.Adapter.AdapterManga;
+import com.example.testaplication.Adapter.MangaInformation;
 import com.example.testaplication.Adapter.ListFavoriteConstructor;
 import com.example.testaplication.Adapter.PhotoCustomListView;
 import com.example.testaplication.R;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentList extends Fragment {
-    private List<AdapterManga> list = new ArrayList<>();
+    private List<MangaInformation> list = new ArrayList<>();
     private ListView listViewItem;
     private  PhotoCustomListView adapter;
     private Button btnadd;

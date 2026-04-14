@@ -18,11 +18,11 @@ import java.util.List;
 public class PhotoCustomListView extends BaseAdapter implements Filterable {
     Context context;
     int layout;
-    List<AdapterManga> list = new ArrayList<>();
-    List<AdapterManga> listori = new ArrayList<>();
+    List<MangaInformation> list = new ArrayList<>();
+    List<MangaInformation> listori = new ArrayList<>();
 
 
-    public PhotoCustomListView(Context context, int layout, List<AdapterManga> list) {
+    public PhotoCustomListView(Context context, int layout, List<MangaInformation> list) {
         this.context = context;
         this.layout = layout;
         this.list = list;
@@ -51,7 +51,7 @@ public class PhotoCustomListView extends BaseAdapter implements Filterable {
         ImageView img = view.findViewById(R.id.imagelv);
         TextView name = view.findViewById(R.id.namelv);
         TextView author = view.findViewById(R.id.authorlv);
-        AdapterManga db = list.get(i);
+        MangaInformation db = list.get(i);
         img.setImageResource(db.getSource());
         name.setText(db.getNameAuthors());
         author.setText(db.getDescription());
@@ -68,8 +68,8 @@ public class PhotoCustomListView extends BaseAdapter implements Filterable {
                     list = listori;
                 }
                     else{
-                        List<AdapterManga> list2 = new ArrayList<>();
-                        for(AdapterManga custom : listori){
+                        List<MangaInformation> list2 = new ArrayList<>();
+                        for(MangaInformation custom : listori){
                             if(custom.getNameAuthors().toLowerCase().contains(searching_name)){
                                 list2.add(custom);
                             }
@@ -84,7 +84,7 @@ public class PhotoCustomListView extends BaseAdapter implements Filterable {
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) { // sau khi loc tu cai tren se ra cai nay do
-                list = (List<AdapterManga>) filterResults.values; // gan no cho list ne
+                list = (List<MangaInformation>) filterResults.values; // gan no cho list ne
                 notifyDataSetChanged(); // thong bao du lieu thay doi ne
             }
         };

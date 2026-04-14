@@ -1,18 +1,25 @@
 package com.example.testaplication.Display;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.testaplication.Adapter.CategoryApdater;
@@ -32,6 +39,8 @@ public class CategoryFragment extends Fragment {
     private CategoryApdater categoryApdater;
     private Context context;
 
+    private SearchView searchView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,6 +48,12 @@ public class CategoryFragment extends Fragment {
          context = getContext();
          mapping();
 
+         Toolbar toolbar = view.findViewById(R.id.toolbar);
+         AppCompatActivity activity = (AppCompatActivity) getActivity();
+         if (activity != null) {
+            activity.setSupportActionBar(toolbar);
+            setHasOptionsMenu(true);
+         }
          String databasePath = context.getDatabasePath("app_manga.db").getPath();
          Log.d("CategoryFragment", "Duong dan: "  + databasePath);
 
@@ -66,6 +81,34 @@ public class CategoryFragment extends Fragment {
 
     private void mapping() {
         listView = (ListView) view.findViewById(R.id.listview_category);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu, menu);
+//        SearchManager searchManager = (SearchManager)getActivity().getSystemService(getActivity().SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setQueryHint("Tim kiem the loai");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                categoryList = categoryDataScoure.search(s);
+                categoryApdater.setCategoryList(categoryList);
+                categoryApdater.notifyDataSetChanged();
+                return false;
+            }
+        });
+
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

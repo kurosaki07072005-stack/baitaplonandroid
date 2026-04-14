@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
     private static final int RESQUET_CODE = 1;
     private CheckBox checkBox;
     private Button btnSignUp;
-
+    private Button btnLogin;
     private TextView textUsername;
     private TextView textPassword;
     private TextView textRePassword;
@@ -69,13 +69,20 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
-
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUp.this, Login.class);
+                startActivity(intent);
+            }
+        });
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SignUp.this, Login.class);
                 startActivity(intent);
-                finish();
+
             }
         });
     }
@@ -98,12 +105,12 @@ public class SignUp extends AppCompatActivity {
         }
     }
     public void mapping(){
-            btnSignUp = findViewById(R.id.btnSignUpx);
-            textPassword = findViewById(R.id.edtPassword);
-            textGmail = findViewById(R.id.edtGmail);
-            checkBox = findViewById(R.id.checkboxconfirm);
-            textRePassword = findViewById(R.id.edtRePassword);
-            btnBack = findViewById(R.id.btnLogin);
+        btnSignUp = findViewById(R.id.btnSignUpx);
+        textPassword = findViewById(R.id.edtPassword);
+        textGmail = findViewById(R.id.edtGmail);
+        checkBox = findViewById(R.id.checkboxconfirm);
+        textRePassword = findViewById(R.id.edtRePassword);
+        btnBack = findViewById(R.id.btnLogin);
     }
     private void clickSignUp(){
         String password = textPassword.getText().toString().trim();

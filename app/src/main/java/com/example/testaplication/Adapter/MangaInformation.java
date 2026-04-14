@@ -1,6 +1,6 @@
 package com.example.testaplication.Adapter;
 
-public class AdapterManga {
+public class MangaInformation {
     private int source;
     private String nameAuthors;
     private String description;
@@ -29,12 +29,12 @@ public class AdapterManga {
         this.description = description;
     }
 
-    public AdapterManga(int source, String nameAuthors, String description) {
+    public MangaInformation(int source, String nameAuthors, String description) {
         this.source = source;
         this.nameAuthors = nameAuthors;
         this.description = description;
     }
-    public AdapterManga(String nameAuthors, String description){
+    public MangaInformation(String nameAuthors, String description){
         this.nameAuthors = nameAuthors;
         this.description = description;
     }

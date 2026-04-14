@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.ManagementAddManga"
+    android:orientation="vertical">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:textSize="20dp"
+    android:text="Thêm Truyện"></TextView>
+    <!-- Trường nhập tên truyện -->
+    <EditText
+        android:id="@+id/editTextTenTruyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên truyện"
+        android:minHeight="48dp" />
+
+    <!-- Trường nhập tác giả -->
+    <EditText
+        android:id="@+id/editTextTheLoai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Thể Loại"
+        android:minHeight="48dp" />
+
+    <!-- Trường chọn ảnh -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chọn ảnh"
+        android:layout_gravity="center"
+        android:id="@+id/buttonChonAnh" />
+
+    <!-- Hiển thị ảnh đã chọn -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_height="100dp"
+        android:id="@+id/imageView" />
+
+    <!-- Button để thêm truyện -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm truyện"
+        android:layout_gravity="center"
+        android:id="@+id/buttonThemTruyen" />
+</androidx.appcompat.widget.LinearLayoutCompat>

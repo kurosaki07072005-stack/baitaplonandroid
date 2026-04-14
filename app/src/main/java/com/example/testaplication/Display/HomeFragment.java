@@ -25,7 +25,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.testaplication.Adapter.AdapterCustom;
 import com.example.testaplication.Adapter.PhotoAdapter;
-import com.example.testaplication.Adapter.AdapterManga;
+import com.example.testaplication.Adapter.MangaInformation;
 import com.example.testaplication.Manga.AttackOnTitan;
 import com.example.testaplication.Manga.BlackClover;
 import com.example.testaplication.Adapter.Photo;
@@ -57,19 +57,15 @@ public class HomeFragment extends Fragment {
         String user_name = sharedPreferences.getString("email", "");
         auto_slide();
         sqLiteHelper = new MangaSQLiteHelper(getActivity());
-        sqLiteHelper.insert_Value(R.drawable.blcv,"Black CLover","Trinh Thám");
-        sqLiteHelper.insert_Value(R.drawable.frbk,"Fruit Backest","Học Dường");
-        sqLiteHelper.insert_Value(R.drawable.spx,"Spy x Family","Tình Yêu");
-        sqLiteHelper.insert_Value(R.drawable.aot2,"Attack On Titan","Lãng Mạng");
-        sqLiteHelper.insert_Value(R.drawable.naruto,"Naruto ","Chuyển Sinh");
-        sqLiteHelper.insert_Value(R.drawable.onepice,"One Piece","Trùng Sinh");
-        listCustomData = sqLiteHelper.get_data();
-//        listCustom.add(new AdapterManga(R.drawable.blcv,"Black CLover","Isayama Hajime"));
-//        listCustom.add(new AdapterManga(R.drawable.frbk,"Fruit Backest"," Natsuki Takaya"));
-//        listCustom.add(new AdapterManga(R.drawable.spx,"Spy x Family","Anya Forger"));
-//        listCustom.add(new AdapterManga(R.drawable.aot2,"Attack On Titan","Tabata Suichi"));
-//        listCustom.add(new AdapterManga(R.drawable.naruto,"Naruto ","Nastuoki Ore"));
-//        listCustom.add(new AdapterManga(R.drawable.onepice,"One Piece","Muichiro Oda"));
+        if(listCustomData != null){
+            sqLiteHelper.insert_Value(R.drawable.blcv,"Black Clover","Phiêu Lưu");
+            sqLiteHelper.insert_Value(R.drawable.girl,"Fruit Back","Khám Phá");
+            sqLiteHelper.insert_Value(R.drawable.kmys,"Kimetsu Yaiba","Phiêu Lưu");
+            sqLiteHelper.insert_Value(R.drawable.aot2,"KingDom Legancy","Phiêu Lưu");
+            sqLiteHelper.insert_Value(R.drawable.anime,"One Piece","Phiêu Lưu");
+            sqLiteHelper.insert_Value(R.drawable.romem,"Dragon Ball","Phiêu Lưu");
+            listCustomData = sqLiteHelper.get_data();
+        }
         AdapterCustom adapter = new AdapterCustom(getActivity(),R.layout.custom_list_view,listCustomData);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,7 +75,7 @@ public class HomeFragment extends Fragment {
                     String name = listCustomData.get(i).getNameAuthors();
                     String des = listCustomData.get(i).getDescription();
                     int image = listCustomData.get(i).getSource();
-                    if (!db.exists2(R.drawable.blcv,user_name)) {
+                    if (!db.exists2(name,user_name)) {
                         db.insertData2(String.valueOf(image), name, des,user_name);
                     }
                     Intent intent = new Intent(getActivity(), BlackClover.class);
@@ -89,7 +85,7 @@ public class HomeFragment extends Fragment {
                     String name = listCustomData.get(i).getNameAuthors();
                     String des = listCustomData.get(i).getDescription();
                     int image = listCustomData.get(i).getSource();
-                    if (!db.exists2(R.drawable.frbk,user_name)) {
+                    if (!db.exists2(name,user_name)) {
                         db.insertData2(String.valueOf(image), name, des,user_name);
                     }
                 }
@@ -97,7 +93,7 @@ public class HomeFragment extends Fragment {
                     String name = listCustomData.get(i).getNameAuthors();
                     String des = listCustomData.get(i).getDescription();
                     int image = listCustomData.get(i).getSource();
-                    if (!db.exists2(R.drawable.spx,user_name)) {
+                    if (!db.exists2(name,user_name)) {
                         db.insertData2(String.valueOf(image), name, des,user_name);
                     }
                 }
@@ -105,7 +101,7 @@ public class HomeFragment extends Fragment {
                     String name = listCustomData.get(i).getNameAuthors();
                     String des = listCustomData.get(i).getDescription();
                     int image = listCustomData.get(i).getSource();
-                    if (!db.exists2(R.drawable.aot2,user_name)) {
+                    if (!db.exists2(name,user_name)) {
                         db.insertData2(String.valueOf(image), name, des,user_name);
                     }
                     Intent intent = new Intent(getActivity(), AttackOnTitan.class);
@@ -115,7 +111,7 @@ public class HomeFragment extends Fragment {
                     String name = listCustomData.get(i).getNameAuthors();
                     String des = listCustomData.get(i).getDescription();
                     int image = listCustomData.get(i).getSource();
-                    if (!db.exists2(R.drawable.naruto,user_name)) {
+                    if (!db.exists2(name,user_name)) {
                         db.insertData2(String.valueOf(image), name, des,user_name);
                     }
                 }
@@ -123,7 +119,7 @@ public class HomeFragment extends Fragment {
                     String name = listCustomData.get(i).getNameAuthors();
                     String des = listCustomData.get(i).getDescription();
                     int image = listCustomData.get(i).getSource();
-                    if (!db.exists2(R.drawable.onepice,user_name)) {
+                    if (!db.exists2(name,user_name)) {
                         db.insertData2(String.valueOf(image), name, des,user_name);
                     }
                 }
@@ -248,9 +244,9 @@ public class HomeFragment extends Fragment {
     private PhotoAdapter photoAdapter;
     private Timer timer;
     private List<Photo> listPhoto = new ArrayList<>();
-    private List<AdapterManga> listCustomData = new ArrayList<>();
+    private List<MangaInformation> listCustomData = new ArrayList<>();
     private GridView gridView;
-    public static List<AdapterManga> list_history = new ArrayList<>();
+    public static List<MangaInformation> list_history = new ArrayList<>();
     private MyDatabaseHelper db;
     private de.hdodenhof.circleimageview.CircleImageView asta;
     private de.hdodenhof.circleimageview.CircleImageView naruto;

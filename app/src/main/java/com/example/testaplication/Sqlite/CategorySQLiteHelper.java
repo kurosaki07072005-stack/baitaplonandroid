@@ -11,7 +11,7 @@ public class CategorySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_DESCRIPTION = "description";
 
-    public static final String DATABASE_NAME = "app_manga.db";
+    public static final String DATABASE_NAME = "app_manga_king.db";
     private static final int DATABASE_VERSION = 2;
 
     // Câu lệnh khởi tạo Database.

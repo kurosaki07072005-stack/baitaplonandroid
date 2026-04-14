@@ -16,11 +16,39 @@
         android:theme="@style/Theme.TestAplication"
         tools:targetApi="31">
         <activity
+            android:name=".Admin.UpdateMangaAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.ManagementAddManga"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.MangaManagement"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".Admin.AccDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AccFragment"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".Manga.TotalVoteManga"
+            android:exported="false" />
+        <activity
+            android:name=".Display.CategoryFragment"
+            android:exported="false" />
+        <activity
             android:name=".Manga.MangaCategory"
             android:exported="false" />
         <activity
-            android:name=".AdminManga"
-            android:exported="true"></activity>
+            android:name="AdminManga"
+            android:exported="true" />
         <activity
             android:name=".Manga.CommentAndReview"
             android:exported="false" />
@@ -51,21 +79,14 @@
         <activity
             android:name=".Account.SplashActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
-        <activity
-            android:name=".Display.History"
-            android:exported="false" />
-        <activity
-            android:name=".Display.ListFavorite"
-            android:exported="false" />
-        <activity
-            android:name=".Display.Settings"
-            android:exported="false" />
         <activity
             android:name=".Display.FragmentList"
             android:exported="false" />

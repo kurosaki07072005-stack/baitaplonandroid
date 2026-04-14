@@ -1,12 +1,17 @@
 package com.example.testaplication.Manga;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.testaplication.Adapter.MangaAdapter;
@@ -27,6 +32,9 @@ public class MangaCategory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_list_catergory_manga);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         categoryName = findViewById(R.id.category_name);
         listView = findViewById(R.id.listview_category_manga);
@@ -55,5 +63,29 @@ public class MangaCategory extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                mangaList = mangaSQLiteHelper.search(s, categoryName.getText().toString().trim());
+                mangaAdapter.setList(mangaList);
+                mangaAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 }

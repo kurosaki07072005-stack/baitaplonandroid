@@ -7,7 +7,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.testaplication.Display.FragmentList;
 import com.example.testaplication.Display.HomeFragment;
-import com.example.testaplication.Display.Settings;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     private Fragment fragment;
@@ -32,8 +31,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
                 return fragment;
             case 1:
                 return new FragmentList();
-            case 2:
-                return  new Settings();
+
             default:
                 return new HomeFragment();
         }

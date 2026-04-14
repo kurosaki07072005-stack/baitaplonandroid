@@ -21,11 +21,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import com.example.testaplication.Adapter.AdapterManga;
+import com.example.testaplication.Adapter.MangaInformation;
 import com.example.testaplication.Adapter.ListFavoriteConstructor;
 import com.example.testaplication.Adapter.PhotoCustomListView;
 import com.example.testaplication.Manga.BlackClover;
-import com.example.testaplication.Manga.MangaCategory;
 import com.example.testaplication.R;
 import com.example.testaplication.Sqlite.MangaSQLiteHelper;
 import com.example.testaplication.Sqlite.MyDatabaseHelper;
@@ -34,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MangaFragment extends Fragment {
-    private List<AdapterManga> list = new ArrayList<>();
+    private List<MangaInformation> list = new ArrayList<>();
     private ListView listViewItem;
     private PhotoCustomListView adapter;
     private Button btnadd;

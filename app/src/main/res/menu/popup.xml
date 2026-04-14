@@ -3,4 +3,7 @@
     <item
         android:id="@+id/menu_delete"
         android:title="Xóa"/>
+    <item
+        android:id="@+id/menu_edit"
+        android:title="Sửa Bình Luận"/>
 </menu>

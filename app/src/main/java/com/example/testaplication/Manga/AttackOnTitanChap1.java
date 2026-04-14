@@ -37,25 +37,9 @@ public class AttackOnTitanChap1 extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,1);
         recyclerView.setLayoutManager(gridLayoutManager);
         textBack = findViewById(R.id.imgback);
-//        textBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Chap2BlackClover.this,BlackCloverChap1.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
         setChap = findViewById(R.id.setChap);
         setChap.setText("Chapter 1");
         imgNext = findViewById(R.id.imgnext);
-//        imgNext.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(AttackOnTitanChap1.this, .class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
     }
     public void get_image(){
         Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd HH:mm:ss)").create();

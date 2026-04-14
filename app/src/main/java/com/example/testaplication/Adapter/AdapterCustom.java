@@ -16,9 +16,9 @@ import java.util.List;
 public class AdapterCustom extends BaseAdapter {
     Context context;
     int layout;
-    List<AdapterManga> list = new ArrayList<>();
+    List<MangaInformation> list = new ArrayList<>();
 
-    public AdapterCustom(Context context, int layout, List<AdapterManga> list) {
+    public AdapterCustom(Context context, int layout, List<MangaInformation> list) {
         this.context = context;
         this.layout = layout;
         this.list = list;
@@ -47,7 +47,7 @@ public class AdapterCustom extends BaseAdapter {
         ImageView img = view.findViewById(R.id.imgview);
         TextView  author = view.findViewById(R.id.textFisrt);
         TextView  des = view.findViewById(R.id.textSecond);
-        AdapterManga custom = list.get(i);
+        MangaInformation custom = list.get(i);
         img.setImageResource(custom.getSource());
         author.setText(custom.getNameAuthors());
         des.setText(custom.getDescription());

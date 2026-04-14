@@ -51,7 +51,17 @@ public class AttackOnTitan extends AppCompatActivity {
 
         }
     });
+        vote = findViewById(R.id.Vote);
+        vote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AttackOnTitan.this, TotalVoteManga.class);
+                intent.putExtra("Name", "Attack On Titan");
+                startActivity(intent);
+            }
+        });
     }
     private ListView listView;
     private Button sendComment;
+    private Button vote;
     }

@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.testaplication.AdminManga;
 import com.example.testaplication.MainActivity;
 import com.example.testaplication.R;
 import com.example.testaplication.Sqlite.LoginDataScoure;
@@ -71,7 +72,7 @@ public class Login extends AppCompatActivity {
 //                AlertDialog dialog = builder.create();
 //                dialog.show();
 //            }
- //       });
+        //       });
 
         SharedPreferences preferences = getSharedPreferences("remember-account", Context.MODE_PRIVATE);
         String userName = preferences.getString("username", "");
@@ -119,7 +120,27 @@ public class Login extends AppCompatActivity {
         loginDataScoure = new LoginDataScoure(this);
         loginDataScoure.open();
 
-        if(loginDataScoure.existAccount(account)) {
+        if(email.equals("admin@gmail.com") && password.equals("Admin@")) {
+            Intent intent = new Intent(Login.this, AdminManga.class);
+            SharedPreferences sharedPreferences = getSharedPreferences("MyUserName", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("email", email);
+            editor.putString("username", account.getUsername());
+            editor.putString("password", account.getPassword());
+            editor.apply();
+
+            if(rememberAccount.isChecked()) {
+                SharedPreferences preferences = getSharedPreferences("remember-account", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = preferences.edit();
+                edit.putString("username", account.getUsername());
+                edit.putString("password", account.getPassword());
+                edit.putBoolean("remember", true);
+                edit.apply();
+            }
+
+            startActivity(intent);
+        }
+        else if(loginDataScoure.existAccount(account)) {
             Toast.makeText(Login.this, "Đăng Nhập thành công", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Login.this, MainActivity.class);
             SharedPreferences sharedPreferences = getSharedPreferences("MyUserName", Context.MODE_PRIVATE);
@@ -142,7 +163,7 @@ public class Login extends AppCompatActivity {
 //            finishActivity(RESQUET_CODE);
         }
         else {
-           Toast.makeText(Login.this, "Tên Tài Khoản Hoặc Mật Khẩu Không Chính Xác", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "Tên Tài Khoản Hoặc Mật Khẩu Không Chính Xác", Toast.LENGTH_SHORT).show();
         }
     }
     public void mapping(){

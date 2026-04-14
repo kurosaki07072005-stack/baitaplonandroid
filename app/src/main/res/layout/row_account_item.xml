@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="#ECE3E3"
+    app:cardElevation="@dimen/_5sdp"
+    app:cardUseCompatPadding="true"
+    >
+
+    <RelativeLayout
+
+        android:id="@+id/RLid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/accImg"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/baseline_person_24"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="@dimen/_1sdp"
+            android:padding="@dimen/_5sdp"></de.hdodenhof.circleimageview.CircleImageView>
+
+        <TextView
+            android:id="@+id/accName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/accImg"
+            android:text="Account"
+            android:textSize="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_90sdp"></TextView>
+        <ImageView
+            android:id="@+id/detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_remove_red_eye_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/_80sdp"></ImageView>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/AccDelete"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="match_parent"
+            android:text="Delete"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="#F44336"
+            android:textSize="@dimen/_18sdp"
+
+            ></TextView>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView >

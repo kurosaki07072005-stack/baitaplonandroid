@@ -50,7 +50,6 @@ public class ChangePasswordFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_change_password, container, false);
-
         passwordCofirm = view.findViewById(R.id.passwordconfirm);
         pass = view.findViewById(R.id.password);
         repass = view.findViewById(R.id.passwordNew);

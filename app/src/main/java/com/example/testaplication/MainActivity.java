@@ -25,6 +25,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.testaplication.Account.Login;
 import com.example.testaplication.Adapter.DefaultFragment;
 import com.example.testaplication.Adapter.ViewPagerAdapter;
+import com.example.testaplication.Display.AdminFragments;
 import com.example.testaplication.Display.CategoryFragment;
 import com.example.testaplication.Display.ChangePasswordFragment;
 import com.example.testaplication.Display.FavouriteFragment;
@@ -32,6 +33,7 @@ import com.example.testaplication.Display.FragmentList;
 import com.example.testaplication.Display.HistoryFragment;
 import com.example.testaplication.Display.HomeFragment;
 import com.example.testaplication.Display.MangaFragment;
+import com.example.testaplication.Display.VoteFragments;
 import com.example.testaplication.Manga.Category;
 import com.example.testaplication.Sqlite.CategoryDataScoure;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,18 +47,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int CATEGORY_FRAGMENT = 2;
     private static final int FAVOURITE_FRAGMENT = 3;
     private static final int HISTORY_FRAGMENT = 4;
-    private static final int CHANGE_PASSWORD_FRAGMENT = 5;
-    private static final int FRAGMENT_LIST = 6;
-    private static final int MANGA_FRAGMENT_LIST = 7;
-
-    private static final int LOG_OUT = 5;
+    private static final int VOTE_FRAGMENTS = 5;
+    private static final int CHANGE_PASSWORD_FRAGMENT = 6;
+    private static final int FRAGMENT_LIST = 7;
+    private static final int MANGA_FRAGMENT_LIST = 8;
+    private static final int LOG_OUT = 9;
+    private static final int ADMIN_FRAGMENT = 10;
     private int currentFragment = HOME_FRAGMENT;
     private ViewPagerAdapter viewPagerAdapter;
     private DrawerLayout drawerLayout;
     private  long backpress;
     private BottomNavigationView bottomNavigationView;
     private ViewPager2 viewPager;
-
+    private String userName;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         viewPagerAdapter = new ViewPagerAdapter(this);
         viewPagerAdapter.setFragment(new DefaultFragment());
-
-
         viewPager.setAdapter(viewPagerAdapter);
 //        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
 //            @Override
@@ -119,30 +120,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyUserName", MODE_PRIVATE);
-        String userName = sharedPreferences.getString("username","User");
+         userName = sharedPreferences.getString("username","User");
         View headerView = navigationView.getHeaderView(0);
         TextView displayUser = headerView.findViewById(R.id.UserName);
         displayUser.setText(userName);
     }
 
-    @Override
-    public  void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
-            super.onBackPressed();
-        }
-
-        if(backpress + 2000 > System.currentTimeMillis()){
-            super.onBackPressed();
-            return;
-        }
-        else{
-            Toast.makeText(MainActivity.this, "CLick Again To Exit App", Toast.LENGTH_SHORT).show();
-        }
-        backpress = System.currentTimeMillis();
-    }
+//    @Override
+//    public  void onBackPressed() {
+//        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }
+//        else {
+//            super.onBackPressed();
+//        }
+//
+//        if(backpress + 2000 > System.currentTimeMillis()){
+//            super.onBackPressed();
+//            return;
+//        }
+//        else{
+//            Toast.makeText(MainActivity.this, "CLick Again To Exit App", Toast.LENGTH_SHORT).show();
+//        }
+//        backpress = System.currentTimeMillis();
+//    }
 
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -220,6 +221,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 currentFragment = MANGA_FRAGMENT_LIST;
             }
         }
+        else if(id == R.id.nav_listVote){
+            if(currentFragment != VOTE_FRAGMENTS) {
+                Fragment VoteFragment = new VoteFragments();
+                viewPagerAdapter.setFragment(VoteFragment);
+                replaceFragment(VoteFragment);
+                currentFragment = VOTE_FRAGMENTS;
+            }
+        }
+
 
         viewPagerAdapter.notifyDataSetChanged();
         drawerLayout.closeDrawer(GravityCompat.START);

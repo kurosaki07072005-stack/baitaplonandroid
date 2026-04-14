@@ -7,25 +7,16 @@
     android:orientation="vertical"
     tools:context=".Manga.BlackClover">
 
-    <!-- Phần 1: Hiển thị hình ảnh truyện -->
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="230dp"
+        android:src="@drawable/blcv" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:src="@drawable/blcv">
-        </ImageView>
-    </LinearLayout>
-
-    <!-- Phần 2: ListView để hiển thị bình luận -->
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/listviewblack"
         android:layout_height="0dp"
-        android:layout_weight="1">
-    </ListView>
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,13 +24,20 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:padding="16dp">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="Nhận Xét Truyện!"
             android:id="@+id/sendComment"
-            android:onClick="onSendCommentClick"/> <!-- Đặt một sự kiện onClick cho nút -->
+            android:onClick="onSendCommentClick" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vote Truyện"
+            android:id="@+id/Vote"
+            android:onClick="onVoteClick" />
     </LinearLayout>
 
 </LinearLayout>

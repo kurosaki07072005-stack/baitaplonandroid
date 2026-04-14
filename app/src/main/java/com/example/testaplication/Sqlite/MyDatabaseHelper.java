@@ -122,10 +122,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-    public boolean exists2(int key, String username) {
+    public boolean exists2(String key, String username) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME2 + " WHERE " + COLUMN_IMAGE + " = ? AND " + COLUMN_USERNAME + " = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(key), username});
+        String query = "SELECT * FROM " + TABLE_NAME2 + " WHERE " + COLUMN_NAME + " = ? AND " + COLUMN_USERNAME + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{key, username});
 
         boolean exists = cursor.getCount() > 0;
 
@@ -137,6 +137,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void delete(String image, String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + TABLE_NAME2 + " WHERE " + COLUMN_IMAGE + " = '" + image + "' AND " + COLUMN_USERNAME + " = '" + username + "'";
+        db.execSQL(query);
+        db.close();
+    }
+    public void deleteWishList(String username, String image) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_IMAGE + " = '" + image + "' AND " + COLUMN_USERNAME + " = '" + username + "'";
         db.execSQL(query);
         db.close();
     }

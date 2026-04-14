@@ -11,14 +11,14 @@ import com.example.testaplication.Adapter.Review;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewAndComment extends SQLiteOpenHelper {
-    private static final String DATABASE = "lastchange23.db";
+public class SqlCommentManga extends SQLiteOpenHelper {
+    private static final String DATABASE = "lastchange234.db";
     private static final String DATANAME = "table_review";
     private static final String USERNAME = "username";
     private static final String COMMENT = "comment";
     private static final String NAME_MANGA = "name";
 
-    public ReviewAndComment(@Nullable Context context) {
+    public SqlCommentManga(@Nullable Context context) {
         super(context, DATABASE, null, 2);
     }
 
@@ -48,7 +48,7 @@ public class ReviewAndComment extends SQLiteOpenHelper {
     public List<Review> getData(String name_manga) {
         List<Review> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {"id", USERNAME, NAME_MANGA, COMMENT}; // Bao gồm cột id
+        String[] columns = {"id", USERNAME, NAME_MANGA, COMMENT};
 
         String selection = NAME_MANGA + " = ?";
         String[] selectionArgs = {name_manga};
@@ -68,25 +68,29 @@ public class ReviewAndComment extends SQLiteOpenHelper {
         return list;
     }
 
-    public boolean updateComment(String comment, String username,String nameManga){
+    public boolean updateComment(String comment, String username, String nameManga, int pos) {
         ContentValues contentValues = new ContentValues();
         SQLiteDatabase db = this.getWritableDatabase();
-        contentValues.put(COMMENT,comment);
-        String whereClause = USERNAME + " = ? and " + NAME_MANGA + "= ? " ;
-        String[] whereArgs = {username,nameManga};
-        int rowsAffected =  db.update(DATANAME,contentValues,whereClause,whereArgs);
-        if(rowsAffected > 0 ){
-            return true;
+        contentValues.put(COMMENT, comment);
+        String query = "SELECT id FROM " + DATANAME + " WHERE " +NAME_MANGA+ "= ? " + " LIMIT 1 OFFSET " + pos;
+        Cursor cursor = db.rawQuery(query,new String[]{nameManga});
+        int rowsAffected = 0;
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            String whereClause = "id = ?";
+            String[] whereArgs = {String.valueOf(id)};
+            rowsAffected = db.update(DATANAME, contentValues, whereClause, whereArgs);
         }
-        else{
-            return false;
-        }
+        cursor.close();
+        db.close();
+        return rowsAffected > 0;
     }
-    public void deleteRow(int position) {
+
+    public void deleteRow(int position,String nameManga) {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
-            String selectQuery = "SELECT id FROM " + DATANAME + " LIMIT 1 OFFSET " + position;
-            Cursor cursor = db.rawQuery(selectQuery, null);
+            String selectQuery = "SELECT id FROM " + DATANAME + " WHERE " +NAME_MANGA+ "= ? " + " LIMIT 1 OFFSET " + position;
+            Cursor cursor = db.rawQuery(selectQuery,new String[]{nameManga});
             if (cursor.moveToFirst()) {
                 int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
                 String deleteQuery = "DELETE FROM " + DATANAME + " WHERE id = " + id;
@@ -101,6 +105,6 @@ public class ReviewAndComment extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        // Handle database upgrade if needed
+
     }
 }

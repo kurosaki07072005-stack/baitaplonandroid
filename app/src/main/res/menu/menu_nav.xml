@@ -22,9 +22,14 @@
             android:title="@string/nav_category"
             android:icon="@drawable/ic_book"/>
         <item
+            android:id="@+id/nav_listVote"
+            android:title="Xếp Hạng Truyện"
+            android:icon="@drawable/star"/>
+        <item
             android:id="@+id/nav_listManga"
             android:title="Danh Sách Các Truyện Hot"
             android:icon="@drawable/list"/>
+
         <item
             android:id="@+id/nav_search"
             android:title="@string/nav_search"
@@ -34,9 +39,9 @@
     <item android:title="@string/nav_account">
         <menu>
             <item
-            android:id="@+id/nav_profile"
-            android:title="@string/nav_profile"
-            android:icon="@drawable/ic_account_circle"/>
+                android:id="@+id/nav_profile"
+                android:title="@string/nav_profile"
+                android:icon="@drawable/ic_account_circle"/>
 
             <item
                 android:id="@+id/nav_change_password"
