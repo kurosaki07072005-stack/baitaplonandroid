@@ -83,7 +83,7 @@ public class CommentAndReview extends AppCompatActivity {
                 }
 
             }
-
+//khai bao bien
         });
     }
     private void showPopupMenu(View view) {
