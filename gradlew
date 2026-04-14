@@ -120,7 +120,7 @@ if [ "$cygwin" = "false" -a "$darwin" = "false" -a "$nonstop" = "false" ] ; then
         warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"
     fi
 fi
-
+//gradlew
 # For Darwin, add options to specify how the application appears in the dock
 if $darwin; then
     GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
@@ -183,3 +183,4 @@ APP_ARGS=`save "$@"`
 eval set -- $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS "\"-Dorg.gradle.appname=$APP_BASE_NAME\"" -classpath "\"$CLASSPATH\"" org.gradle.wrapper.GradleWrapperMain "$APP_ARGS"
 
 exec "$JAVACMD" "$@"
+#qừqfqf
